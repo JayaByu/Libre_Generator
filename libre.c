@@ -30,7 +30,7 @@
 #define     OE    "ᛟ" 
 #define     D     "ᛞ"
 #define     A     "ᚪ"
-#define     AE    "ᚫ"
+#define     AE    "ᚩ"
 #define     Y     "ᚣ"
 #define     IA    "ᛡ"
 #define     IO    "ᛡ"
@@ -113,6 +113,8 @@ puts("Letter : F : V(U) : TH : O : R : C(k) : G : W : H : N : I : J : EO : P : X
 
 
 
-
+//ᚠ (Fehu) ᚢ(Uruz) ᚦ(Thunriaz ) ᚩ(Ansuzz) ᚱ(Raido) <(Kaunan) X(Gebo) ᚹ(Wunjo) ᚻ(Hagalaz) 
+//ᚾ (Nauthiz) ᛁ(Isa) ᛇ(Elhwaz) ᛈ(Pertho) ᛉ(Algiz) ᛋ(Sowlio) ᛏ(Tiwas) ᛒ(Berkanan) ᛖ(Ehwaz) 
+//ᛚ (Laukaz) ᛝ(Ingwaz) ᛞ(Dagaz) ᛟ(Othalan)
 //ᛒᚢᚿᛆ ᛌᚢᚿᛐ ᛒᛆᛦᚢ ᛚᚮᚴᚼᚢ ᚿᚵᛁᚴᚥᛂᚿᛎᛂᛚᛆ ᚢᚴᚢᛎᛁᛐᚼᚮᚴᚮᛎᛁᛌᛆ ᚢᛘᛆ ᛆᚴᚢᚴᚼᚮ ᛌᛆᛒᛂᛚᚮ
 //Page15 ":ᚠᚢᛚᛗ•ᚪᛠᚣᛟᚪ:ᛚᚢᛝᚾ•ᚳᚢ•ᛒᚾᛏᚠᛝ:ᛁᚢᛁᚢ•ᛟᚫᛂᚠᚫ•ᚢᚷᛉᛇᛈᛉ•ᚣᛠᛚᚪᛉ•ᛟᛉᛡᚦᚻᛠ•ᚾᚪᚳ•ᚢᚷᚾ•ᛈᛖᚾᚦᚩᚢᛁᛡᚱ•ᛏᛁᛒᛇᚳᚠᚷ•ᚩᚦᚪ•ᛁᛈᚻᛡᛒ•ᚹᛈᚻᚱᛞᛉᛏᚢ•ᚣᛒ•ᚠᛋᛉᚢ•ᛗᛁ•ᛡᚱ•ᛝᚢᚠᚦᛝ•ᛈᛟᛒ•ᚻᚷᚻᛡᛚ•ᚩᛞᚪᚳ•ᚦᛈᛞᛋᛡᚻᛇᛚ•ᚢᛏᛋᛞ•ᚦᚢᛞᛝ•ᛚᛉᛝ•ᛏᚩᛚ•ᚪᛚ•ᚣ•ᛟᛡᛉᚣ•ᛒᚻᚫᛂᛡᛁ•ᚱᚦᛚᚠ•ᛠᚾᛝ•ᛉᛗᛒᚩᛠᛈ•"
