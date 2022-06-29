@@ -1,18 +1,18 @@
 ## task name
 
-Tone (Forensic, Baby, 10 pts)
+Tone (Forensic, Baby)
 
 ## task description
 
-Ha! Looks like this guy forgot to turn off his video stream and entered his password on his phone!
+Ha! Sepertinya orang ini lupa mematikan streaming videonya dan memasukkan kata sandi di ponselnya! 
 
 [youtu.be/11k0n7TOYeM](https://youtu.be/11k0n7TOYeM)
 
 ## solution
 
-The task description leaves no room to questions - in the video you can clearly hear a guy typing something on his phone and making some keypress beeps in process. These beeps are the tones of [DTFM keypad signals](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling) associated with different keys. Turns out that these beeps can be easily identified and decoded by matchin them to corresponding frequencies as it was first outlined in the [paper by Liu](https://blogs.unimelb.edu.au/sciencecommunication/2012/10/17/melody-behind-phone-numbers/) back in 2012.
+Deskripsi tugas tidak menyisakan ruang untuk pertanyaan - dalam video Anda dapat dengan jelas mendengar seorang pria mengetik sesuatu di teleponnya dan membuat beberapa bunyi bip saat menekan tombol. bip ini adalah nada sinyal keypad DTFM yang terkait dengan tombol yang berbeda. Ternyata bunyi bip ini dapat dengan mudah diidentifikasi dan diterjemahkan dengan mencocokkannya ke frekuensi yang sesuai seperti yang pertama kali diuraikan dalam makalah oleh Liu pada tahun 2012.
 
-To clearly see the spectrogram with the frequencies, we first need to get the audio from the video and convert it to a PCM (pulse-code modulation) signed 24 bits mono wav.
+Untuk melihat spektogram dengan frekuensi dengan jelas, pertama-tama kita perlu mendapatkan audio dari video dan mengubahnya menjadi PCM (modulasi kode-pulsa) bertanda 24 bit mono wav. 
 
 ```
 youtube-dl https://youtu.be/11k0n7TOYeM 
@@ -20,42 +20,40 @@ youtube-dl https://youtu.be/11k0n7TOYeM
 ffmpeg -i twitch_saved_video_clip_@thesecretguy98191_2019-07-20-11k0n7TOYeM.mp4 -vn -acodec pcm_s24le -ar 44100 -ac 1 output.wav
 ```
 
-After getting the file ready, we can open it in Audacity, change the view mode to Spectrogram and modify the scale to 650 Hz being the minimum and 1700 Hz being the maximum frequency so we can better see the frequencies for each key press.
+Setelah file siap, kita dapat membukanya di Audacity, mengubah mode tampilan ke Spectogram dan mengubah skala menjadi 650 Hz sebagai frekuensi minimum dan 1700 Hz sebagai frekuensi maksimum sehingga kita dapat lebih baik melihat frekuensi untuk setiap penekanan tombol. 
 
 ![imgAdd](https://raw.githubusercontent.com/ianknives/ctfwriteups/master/Cybrics%20CTF%202019/Tone/audacity_settings.png)
 
 ![imgAdd](https://raw.githubusercontent.com/ianknives/ctfwriteups/master/Cybrics%20CTF%202019/Tone/audacity.png)
 
-It will look like this in Audacity. What you can do next is manually compare each key press with the table of frequencies in the paper by Liu, or you can choose the hacker way and try to set up something to categorize and identify the frequencies for you.
+Ini akan terlihat seperti ini di Audacity. Apa yang dapat Anda lakukan selanjutnya adalah membandingkan secara manual setiap penekanan tombol dengan tabel frekuensi di kertas oleh Liu, atau Anda dapat memilih cara peretas dan mencoba mengatur sesuatu untuk mengkategorikan dan mengidentifikasi frekuensi untuk Anda.
 
-I chose the manual approach first and identified all the tones, which gave me a long string of numbers.
+Saya memilih pendekatan manual terlebih dahulu dan mengidentifikasi semua nada, yang memberi saya serangkaian angka yang panjang. 
 
 ```
 222999227774442227777777733222777338866666255533355524
 ```
 
-I wanted to double-check the result and also get some new tools, so I tried using some of the tools available on Github, but could not achieve a consistent result.
+Saya ingin memeriksa ulang hasilnya dan juga mendapatkan beberapa alat baru, jadi saya mencoba menggunakan beberapa alat yang tersedia di Github, tetapi tidak dapat mencapai hasil yang konsisten.
 
-What worked for me though was an iPhone app called DTMFdecode which identified the tones pretty well and gave me the opportunity to double-check what I parsed manually. You can see on the screenshot below that there is only a minor mistake in recognition for this app.
+Apa yang berhasil bagi saya adalah aplikasi iPhone bernama DTMFdecode yang mengidentifikasi nada dengan cukup baik dan memberi saya kesempatan untuk memeriksa ulang apa yang saya parsing secara manual. Anda dapat melihat pada tangkapan layar di bawah bahwa hanya ada kesalahan kecil dalam pengenalan untuk aplikasi ini. 
 
 ![imgAdd](https://raw.githubusercontent.com/ianknives/ctfwriteups/master/Cybrics%20CTF%202019/Tone/decoder_app.jpg)
 
-By looking at the string of numbers you might have already realised that only the numbers from 2 to 9 are occuring, which points to the fact that these numbers represent letters you can see on your phone keypads, with for example A, B and C being under the 2 key.  
+Dengan melihat deretan angka, Anda mungkin telah menyadari bahwa hanya angka dari 2 hingga 9 yang muncul, yang menunjukkan fakta bahwa angka-angka ini mewakili huruf yang dapat Anda lihat di papan tombol ponsel Anda, misalnya A, B, dan C menjadi di bawah 2 kunci.
 
-This means that 222 probably stands for C, or for example B and A and in general it is something called the Multi-tap Cipher (SMS Mode ABC). Looking for a decoder site, I was able to find one [here](https://www.dcode.fr/multitap-abc-cipher) and pasting the numbers gives us the following string.
+Ini berarti bahwa 222 mungkin singkatan dari C, atau misalnya B dan A dan secara umum itu adalah sesuatu yang disebut Multi-tap Cipher (SMS Mode ABC). Mencari situs dekoder, saya dapat menemukannya di sini dan menempelkan angka memberi kita string berikut. 
 
 ```
 CYBRICSSECREUONALFLAG
 ```
 
-I tried bruteforcing more for other possible combinations after the properly guessed CYBRICS part.
+Saya mencoba bruteforcing lebih banyak untuk kemungkinan kombinasi lain setelah bagian CYBRICS yang ditebak dengan benar. 
 
 ![imgAdd](https://raw.githubusercontent.com/ianknives/ctfwriteups/master/Cybrics%20CTF%202019/Tone/decoder.png)
 
-SECRETTONA here looks like what we were looking for, which makes the whole string the following:
+SECRETTONA di sini terlihat seperti yang kami cari, yang menjadikan seluruh string sebagai berikut: 
 
 ```
 CYBRICSSECRETTONALFLAG
 ```
-
-And that gives us 10 points! Brilliant.
